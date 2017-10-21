@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
-      },
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ryteone1/ryan-table.git"
@@ -18,7 +18,4 @@
     "url": "https://github.com/Ryteone1/ryan-table/issues"
   },
   "homepage": "https://github.com/Ryteone1/ryan-table#readme"
-
 }
-
-
