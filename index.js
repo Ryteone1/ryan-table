@@ -16,6 +16,12 @@ var tables = [{
     "email": "president@worldvaporexpo.com",
     "id": "MarkE",
     "phone": "844-827-3222"
+},
+{
+	"name": "Ryan",
+    "email": "rynlacy@yahoo.com",
+    "id": "rlacy",
+    "phone": "844-827-3222"
 }];
 
 var waitList = [];
