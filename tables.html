@@ -1,0 +1,89 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Q's Tables - the best tables in the whole world!">
+    <meta name="author" content="Dan Kaltenbaugh">
+
+    <title>Q's Tables</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!-- Font Awesome Embed Code -->
+    <script src="https://use.fontawesome.com/3f7137cd88.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <main role="main">
+        <div class="jumbotron text-center">
+            <h1 class="display-3"><i class="fa fa-fire" aria-hidden="true"></i>Q's Tables</h1>
+            <h2 class="display-5">Reservations!</h2>
+            <p>
+                <a class="btn btn-lg btn-primary" href="#" role="button">
+                    <i class="fa fa-table" aria-hidden="true"></i> View Tables</a>
+                <a class="btn btn-lg btn-danger" href="/reserve" role="button">
+                    <i class="fa fa-plus-square-o" aria-hidden="true"></i> Make Reservation</a>
+            </p>
+        </div>
+
+        <h4>Table reservations:</h4>
+        <div id="table-div"></div>
+
+        <h4>Wait List</h4>
+        <div id="wait-list-div"></div>
+
+        <div class="row marketing">
+            <div class="col-lg-6">
+                <a href="/api/tables">API Table Link</a> |
+                <a href="/api/wait-list">API Wait List</a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; Q's Tables 2017</p>
+    </footer>
+
+</div> <!-- /container -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    $.get("/api/tables", function(data) {
+        console.log(data);
+        if (data) {
+            data.forEach(function(table, index){
+                var tableNumber = index + 1;
+                var tableDiv = $("#table-div");
+                tableDiv.append("<p>" +  tableNumber + ": " + table.name + "</p>");
+            });
+        }
+        else {
+            $("#table-div").text("No reservations found.");
+        }
+    });
+    $.get("/api/wait-list", function(data) {
+        console.log(data);
+        if (data.length >  0) {
+            data.forEach(function(table, index){
+                var waitDiv = $("#wait-list-div");
+                waitDiv.append("<p>" + table.name + "</p>");
+            });
+        }
+        else {
+            $("#wait-list-div").text("No one on the waitlist.");
+        }
+    });
+
+</script>
+</body>
+</html>

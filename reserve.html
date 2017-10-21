@@ -1,0 +1,104 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Q's Tables - the best tables in the whole world!">
+    <meta name="author" content="Dan Kaltenbaugh">
+
+    <title>Q's Tables</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!-- Font Awesome Embed Code -->
+    <script src="https://use.fontawesome.com/3f7137cd88.js"></script>
+
+    <!-- Don't forget jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js">
+    </script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <main role="main">
+        <div class="jumbotron text-center">
+            <h1 class="display-3"><i class="fa fa-fire" aria-hidden="true"></i>Q's Tables</h1>
+            <h2 class="display-5">Make your reservation!</h2>
+            <p>
+                <a class="btn btn-lg btn-primary" href="#" role="button">
+                    <i class="fa fa-table" aria-hidden="true"></i> View Tables</a>
+                <a class="btn btn-lg btn-danger" href="\home" role="button"><i class="fa fa-home" aria-hidden="true"></i></a>
+            </p>
+        </div>
+        <!-- Put reservation form here -->
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Name">
+                <small id="nameHelp" class="form-text text-muted">Just your name please.</small>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="tel" class="form-control" id="phoneNumber" aria-describedby="phoneNumberHelp" placeholder="Phone Number">
+                <small id="phoneNumberHelp" class="form-text text-muted">Just your name please.</small>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="uniqueID">Unique ID</label>
+                <input type="text" class="form-control" id="uniqueID" aria-describedby="uniqeIDHelp" placeholder="id">
+                <small id="uniqueIDHelp" class="form-text text-muted">Nothing unique to see here.</small>
+            </div>
+            <button type="submit" class="btn btn-primary" id="reserve-btn">Reserve It!</button>
+        </form>
+
+
+        Name
+        Phone Number
+        Email
+        Unique ID
+        <div class="row marketing">
+            <div class="col-lg-6">
+                <a href="/api/tables">API Table Link</a> |
+                <a href="/api/wait-list">API Wait List</a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; Q's Tables 2017</p>
+    </footer>
+
+</div> <!-- /container -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    // Question: What does this code do?
+    $("#reserve-btn").on("click", function(event) {
+        event.preventDefault();
+        var newReservation = {
+            name: $("#name").val().trim(),
+            phone: $("#phoneNumber").val().trim(),
+            email: $("#email").val().trim(),
+            id: $("#uniqueID").val().trim()
+        };
+
+        // Question: What does this code do??
+        $.post("/api/reserve", newReservation)
+            .done(function(data) {
+                console.log(data);
+                $(location).attr('href','/home');
+            });
+    });
+</script>
+</body>
+</html>
