@@ -1,0 +1,24 @@
+{
+  "name": "ryan-table",
+  "version": "1.0.0",
+  "description": "step by step",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.js"
+      },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ryteone1/ryan-table.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ryteone1/ryan-table/issues"
+  },
+  "homepage": "https://github.com/Ryteone1/ryan-table#readme"
+
+}
+:wq
+
