@@ -1,0 +1,127 @@
+ <!DOCTYPE html>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<script src="js/angular.js"></script>
+<!-- <script src="js/app3.js"></script> -->
+<script src="js/stock.js"></script>
+<script src="js/jquery.js"></script>
+  <script>
+ $.getJSON("https://bootswatch.com/api/3.json", function (data) {
+  var themes = data.themes;
+  var select = $("select");
+  select.show();
+  $(".alert").toggleClass("alert-info alert-success");
+  $(".alert h4").text("Success!");
+  
+  themes.forEach(function(value, index){
+    select.append($("<option />")
+          .val(index)
+          .text(value.name));
+  });
+  
+  select.change(function(){
+    var theme = themes[$(this).val()];
+    $("link").attr("href", theme.css);
+    $("h1").text(theme.name);
+  }).change();
+
+}, "json").fail(function(){
+    $(".alert").toggleClass("alert-info alert-danger");
+    $(".alert h4").text("Failure!");
+});
+  </script>
+<style>
+img.responsive {
+        width : 100%; /* or max-width : 100% */
+        height: auto; 
+    }
+body {
+  padding: 2em;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+select {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+</style>	
+<head>
+  <meta charset="utf-8">
+  <title>Bootswatch API Demo</title>
+</head>
+<body>
+  <h1>Bootstrap</h1>
+  <div class="alert alert-info">
+    <h4>Alert!</h4>
+    <p>This is a demo of the Bootswatch API.</p>
+  </div>
+  <select></select>
+<!--  <div class="container" ng-controller="StoreController as store">
+    <div class="row">
+    	<div class="col-sm-12">
+    		<ul class="nav nav-pills nav-stacked">
+         	<li ng-repeat="content in contents">
+                <a href ng-click="select(content)">{{content.product_name}}</a>
+         	</li>
+       	</ul>
+    	</div>
+      <div class="col-sm-12 pull-right" ng-show="selectedItem">
+    		<div class="jumbotron">
+          <div id="content">
+            <div>
+              <p>Product: {{selectedItem.product_name}}</p>
+              <p>Price: ${{selectedItem.price}}</p>
+              <p>Picture: <img src={{selectedItem.image_full}} style="max-width:100%; height:auto;" class="responsive"></p>
+            </div>
+          </div>
+    	</div>
+    </div>  
+</div>  
+</div> -->
+<html ng-app="store-engine">
+  <body class="bg">
+	<nav class="navbar navbar-default text-center">
+
+<!--  Store Header  -->
+    <header>
+    <img src="images/logo.png" /><br>
+    <h1>– an {{"Angular" + ' & ' + "SailsJS"}} blog –</h1>
+    <h4>– built-with {{"Node" + ' & ' + "MySql"}} back-end –</h4>
+    <product-loader></product-loader>
+    <h1 class="jumbotron-heading text-center">One Stop Shop</h1>
+      <p class="lead text-muted">Easy, simplified shopping experience for you</p>
+    </header>
+  </nav>
+ 
+<div ng-controller="BlogController as blog">
+<!--  Announcement Container  -->
+<section class="jumbotron text-center  bg">
+  <div class="container bg">     
+    <!--  Products Container  -->
+    <div class="list-group">
+      <!--  Product Container  -->
+      <div class="list-group-item" ng-repeat="product in store.products">
+        <!-- <h3 ng-include="'product-title.html'"></h3> -->
+        <product-title></product-title>
+        <h3 product-price></h3>
+        <product-tabs></product-tabs>
+        <!-- Image Gallery  -->
+        <product-gallery></product-gallery>
+    <!-- Product Tabs  -->
+    <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+        <product-form></product-form>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+</div>
+</body>
+</html>
+
